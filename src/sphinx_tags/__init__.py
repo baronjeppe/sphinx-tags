@@ -21,11 +21,10 @@ logger = getLogger("sphinx-tags")
 
 
 def _update_file_content(filepath: Path, content: str) -> None:
-    """Update content of file only if it has changed
-    """
+    """Update content of file only if it has changed"""
 
     if os.path.exists(filepath):
-        with open(filepath, 'r', encoding='utf8') as f:
+        with open(filepath, "r", encoding="utf8") as f:
             old_content = f.read()
             if old_content == content:
                 # File is already up to date
@@ -247,7 +246,9 @@ class Tag:
 
         content.append("")
 
-        _update_file_content(Path(srcdir) / tags_output_dir / filename, "\n".join(content))
+        _update_file_content(
+            Path(srcdir) / tags_output_dir / filename, "\n".join(content)
+        )
 
 
 class Entry:
@@ -412,7 +413,9 @@ def update_tags(app):
         expected_files = set()
         for extension in app.config.tags_extension:
             # Add all tags
-            expected_files.update([f"{tag.file_basename}.{extension}" for tag in tags.values()])
+            expected_files.update(
+                [f"{tag.file_basename}.{extension}" for tag in tags.values()]
+            )
             # Add tagsindex file
             expected_files.add(f"tagsindex.{extension}")
 
